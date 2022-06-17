@@ -4,6 +4,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 class AuthScreen extends StatefulWidget {
+  static const String routeName = '/auth-screen';
   const AuthScreen({Key? key}) : super(key: key);
 
   @override
@@ -13,6 +14,10 @@ class AuthScreen extends StatefulWidget {
 class _AuthScreenState extends State<AuthScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(); 
+    // ignore: prefer_const_constructors
+    return Scaffold(
+      appBar: AppBar(),
+      body: Center(child: const Text("hi")),
+    );
   }
 }
