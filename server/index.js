@@ -10,8 +10,11 @@ const app = express();
 const authRouter = require("./routes/auth");
 
 // ! middleware
+// ?Use for manipulation of the data sharing between server and clients
 // CLIENTS -> MIDDLEWARE -> SERVER ->CLIENT
+
 app.use(authRouter);
+
 
 // listening an api
 
