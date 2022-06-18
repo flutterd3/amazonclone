@@ -15,7 +15,12 @@ class CustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     //* TextFormField is used because it have validator which helps in showing error to the users....
     return TextFormField(
-      controller: controller,
+
+      // !What are controllers and how do they work?
+
+// I like to think of Controllers as a way to programmatically apply changes in your app that would normally come from user interactions. Controllers are objects you can attach to certain Widgets, and then use those objects to control the behaviour of that Widget. Let's look at some examples:
+    
+  controller: controller,
       decoration: InputDecoration(
           hintText: hintText,
           border: const OutlineInputBorder(

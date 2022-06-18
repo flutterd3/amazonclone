@@ -18,7 +18,7 @@ class AuthScreen extends StatefulWidget {
 }
 
 class _AuthScreenState extends State<AuthScreen> {
-  // ! Default value of shign
+  // ! Default value of sign
   Auth _auth = Auth.signup;
 
   final _signUpFormKey = GlobalKey<FormState>();
@@ -94,6 +94,9 @@ class _AuthScreenState extends State<AuthScreen> {
                   },
                 ),
               ),
+
+              //
+              //   !SignUp form
               if (_auth == Auth.signup)
                 Container(
                   padding: const EdgeInsets.all(8),
@@ -150,6 +153,8 @@ class _AuthScreenState extends State<AuthScreen> {
                   },
                 ),
               ),
+
+              // ! Sign In
               if (_auth == Auth.signin)
                 Container(
                   padding: const EdgeInsets.all(8),
@@ -163,7 +168,7 @@ class _AuthScreenState extends State<AuthScreen> {
                           hintText: 'Email',
                         ),
                         const SizedBox(height: 10),
-                        CustomTextField(
+                        CustomTextField(   
                           controller: _passwordController,
                           hintText: 'Password',
                         ),
