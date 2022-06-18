@@ -13,7 +13,7 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TextFormField is used because it have validator which helps in showing error to the users....
+    //* TextFormField is used because it have validator which helps in showing error to the users....
     return TextFormField(
       controller: controller,
       decoration: InputDecoration(

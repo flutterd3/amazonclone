@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../common/widgets/custom_button.dart';
 import '../../../common/widgets/custom_text_field.dart';
 import '../../../constants/global_variables.dart';
 
@@ -116,15 +117,14 @@ class _AuthScreenState extends State<AuthScreen> {
                           hintText: 'Password',
                         ),
                         const SizedBox(height: 10),
-
-                        // CustomButton(
-                        //   text: 'Sign Up',
-                        //   onTap: () {
-                        //     if (_signUpFormKey.currentState!.validate()) {
-                        //       signUpUser();
-                        //     }
-                        //   },
-                        // )
+                        CustomButton(
+                          text: 'Sign Up',
+                          onTap: () {
+                            // if (_signUpFormKey.currentState!.validate()) {
+                            //   signUpUser();
+                            // }
+                          },
+                        )
                       ],
                     ),
                   ),
