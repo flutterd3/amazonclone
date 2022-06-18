@@ -20,33 +20,21 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        theme: ThemeData(
-          // primarySwatch: Colors.blue,
-          scaffoldBackgroundColor: GlobalVariables.backgroundColor,
-          primaryColor: GlobalVariables.secondaryColor,
-          colorScheme: const ColorScheme.light(
-            primary: GlobalVariables.secondaryColor,
-          ),
-          appBarTheme: const AppBarTheme(
-              elevation: 0,
-              iconTheme: IconThemeData(
-                color: Colors.black,
-              )),
+      theme: ThemeData(
+        // primarySwatch: Colors.blue,
+        scaffoldBackgroundColor: GlobalVariables.backgroundColor,
+        primaryColor: GlobalVariables.secondaryColor,
+        colorScheme: const ColorScheme.light(
+          primary: GlobalVariables.secondaryColor,
         ),
-        onGenerateRoute: (settings) => generateRoute(settings),
-        home: Padding(
-          padding: const EdgeInsets.all(80.0),
-          child: Column(
-            children: [
-              Builder(builder: (context) {
-                return ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, AuthScreen.routeName);
-                    },
-                    child: Center(child: Text("Click me")));
-              })
-            ],
-          ),
-        ));
+        appBarTheme: const AppBarTheme(
+            elevation: 0,
+            iconTheme: IconThemeData(
+              color: Colors.black,
+            )),
+      ),
+      onGenerateRoute: (settings) => generateRoute(settings),
+      home: const AuthScreen(),
+    );
   }
 }
