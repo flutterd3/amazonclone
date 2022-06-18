@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../common/widgets/custom_text_field.dart';
 import '../../../constants/global_variables.dart';
 
 enum Auth {
@@ -21,7 +22,6 @@ class _AuthScreenState extends State<AuthScreen> {
   final _signUpFormKey = GlobalKey<FormState>();
   final _signInFormKey = GlobalKey<FormState>();
 //   // final AuthService authService = AuthService();
-
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -94,41 +94,41 @@ class _AuthScreenState extends State<AuthScreen> {
               ),
 
               if (_auth == Auth.signup)
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  color: GlobalVariables.backgroundColor,
+                  child: Form(
+                    key: _signUpFormKey,
+                    child: Column(
+                      children: [
+                        CustomTextField(
+                          controller: _nameController,
+                          hintText: 'Name',
+                        ),
+                        const SizedBox(height: 10),
+                        CustomTextField(
+                          controller: _emailController,
+                          hintText: 'Email',
+                        ),
+                        const SizedBox(height: 10),
+                        CustomTextField(
+                          controller: _passwordController,
+                          hintText: 'Password',
+                        ),
+                        const SizedBox(height: 10),
 
-              //   Container(
-              //     padding: const EdgeInsets.all(8),
-              //     color: GlobalVariables.backgroundColor,
-              //     child: Form(
-              //       key: _signUpFormKey,
-              //       child: Column(
-              //         children: [
-              //           CustomTextField(
-              //             controller: _nameController,
-              //             hintText: 'Name',
-              //           ),
-              //           const SizedBox(height: 10),
-              //           CustomTextField(
-              //             controller: _emailController,
-              //             hintText: 'Email',
-              //           ),
-              //           const SizedBox(height: 10),
-              //           CustomTextField(
-              //             controller: _passwordController,
-              //             hintText: 'Password',
-              //           ),
-              //           const SizedBox(height: 10),
-              //           CustomButton(
-              //             text: 'Sign Up',
-              //             onTap: () {
-              //               if (_signUpFormKey.currentState!.validate()) {
-              //                 signUpUser();
-              //               }
-              //             },
-              //           )
-              //         ],
-              //       ),
-              //     ),
-              //   ),
+                        // CustomButton(
+                        //   text: 'Sign Up',
+                        //   onTap: () {
+                        //     if (_signUpFormKey.currentState!.validate()) {
+                        //       signUpUser();
+                        //     }
+                        //   },
+                        // )
+                      ],
+                    ),
+                  ),
+                ),
 
               ListTile(
                 tileColor: _auth == Auth.signin
