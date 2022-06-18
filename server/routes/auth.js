@@ -8,17 +8,16 @@ authRouter.post("/api/signup", async (req, res) => {
 
   //? Post data in database
 
-  // Statuscode 200 ->Success
-  // Statuscode 400 ->Client Error
-  // Statuscode 500 ->Server Error
+
 
   const existingUSer = await User.findOne({ email });
   if (existingUSer) {
-
     return res.json({ msg: "User with same email  already exist" });
   }
 
-  //   !initialize user model
+
+  //?   !initialize user model
+  
   let user = new User({
     email,
     password,
