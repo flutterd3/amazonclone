@@ -13,6 +13,10 @@ const authRouter = require("./routes/auth");
 
 app.use(authRouter);
 
+// yesle json request lai server tira send gardinxa so we can access our server
+
+app.use(express.json());
+
 //! connections
 
 mongoose
