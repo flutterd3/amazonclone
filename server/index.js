@@ -1,7 +1,7 @@
 // ?IMPORT FROM PACKAGES
 const express = require("express");
+const mongoose = require("mongoose");
 
-// !
 const PORT = 3000;
 const app = express();
 
@@ -10,11 +10,21 @@ const app = express();
 const authRouter = require("./routes/auth");
 
 // ! middleware
-// ?Use for manipulation of the data sharing between server and clients
-// CLIENTS -> MIDDLEWARE -> SERVER ->CLIENT
 
 app.use(authRouter);
 
+//! connections
+
+mongoose
+  .connect(
+    "mongodb+srv://awash:awash@cluster0.m1ge6.mongodb.net/?retryWrites=true&w=majority"
+  )
+  .then(() => {
+    console.log("Connections Successful");
+  })
+  .catch((e) => {
+    console.log(e);
+  });
 
 // listening an api
 
