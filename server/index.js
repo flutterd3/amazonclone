@@ -1,19 +1,19 @@
+// ?IMPORT FROM PACKAGES
 const express = require("express");
-const PORT = 3000;
 
+// !
+const PORT = 3000;
 const app = express();
 
-// creating an api
-app.get('/',(req,res)=>{
-    res.send("Hello");
+// ? iMPORT FROM OTHER FILES
 
-})
+const authRouter = require("./routes/auth");
 
+// ! middleware
+// CLIENTS -> MIDDLEWARE -> SERVER ->CLIENT
+app.use(authRouter);
 
-// ! CRUD  Get ,Put,Post,Delete,Update  ->
-
-
-
+// listening an api
 
 app.listen(PORT, (req, res) => {
   console.log(`connected at port ${PORT}`);
