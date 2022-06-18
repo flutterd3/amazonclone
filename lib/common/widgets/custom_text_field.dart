@@ -26,6 +26,8 @@ class CustomTextField extends StatelessWidget {
               borderSide: BorderSide(
             color: Colors.black38,
           ))),
+
+      // !This is used when we have sign in and signup in our form fornow just dont think about this
       validator: (val) {
         if (val == null || val.isEmpty) {
           return 'Enter your $hintText';
