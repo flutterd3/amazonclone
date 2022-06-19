@@ -27,6 +27,6 @@ mongoose
 
 // listening an api
 
-app.listen(PORT, (req, res) => {
+app.listen(PORT, "0.0.0.0", (req, res) => {
   console.log(`connected at port ${PORT}`);
 });
