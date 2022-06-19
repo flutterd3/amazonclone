@@ -10,12 +10,12 @@ const app = express();
 const authRouter = require("./routes/auth");
 
 // ! middleware
+// You need to use express's body parser before adding routes to express
 
+app.use(express.json());
 app.use(authRouter);
 
 // yesle json request lai server tira send gardinxa so we can access our server
-
-app.use(express.json());
 
 //! connections
 
