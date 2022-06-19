@@ -1,3 +1,4 @@
+import 'package:amazonclone/routeR.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +20,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-       theme: ThemeData(
+      theme: ThemeData(
         // primarySwatch: Colors.blue,
         scaffoldBackgroundColor: GlobalVariables.backgroundColor,
         primaryColor: GlobalVariables.secondaryColor,
@@ -32,9 +33,8 @@ class _MyAppState extends State<MyApp> {
               color: Colors.black,
             )),
       ),
-
-      home:  AuthScreen(),
-
+      onGenerateRoute: (settings) => generateRoute(settings),
+      home: const AuthScreen(),
     );
   }
 }
