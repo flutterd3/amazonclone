@@ -1,7 +1,6 @@
 // ?IMPORT FROM PACKAGES
 const express = require("express");
 const mongoose = require("mongoose");
-
 const PORT = 3000;
 const app = express();
 
@@ -10,15 +9,11 @@ const app = express();
 const authRouter = require("./routes/auth");
 
 // ! middleware
-// You need to use express's body parser before adding routes to express
 
 app.use(express.json());
 app.use(authRouter);
 
-// yesle json request lai server tira send gardinxa so we can access our server
-
 //! connections
-
 mongoose
   .connect(
     "mongodb+srv://awash:awash@cluster0.m1ge6.mongodb.net/?retryWrites=true&w=majority"
