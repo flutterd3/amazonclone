@@ -4,28 +4,27 @@ const User = require("../models/user");
 const authRouter = express.Router();
 
 authRouter.post("/api/signup", async (req, res) => {
-  const { name, email, password } = req.body;
+  try {
+    const { name, email, password } = req.body;
 
-  //? Post data in database
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res
+        .status(400)
+        .json({ msg: "User with same email already exists!" });
+    }
 
+    let user = new User({
+      email,
+      name,
+      password,
+    });
 
-
-  const existingUSer = await User.findOne({ email });
-  if (existingUSer) {
-    return res.json({ msg: "User with same email  already exist" });
+    user = await user.save();
+    res.json(user);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
   }
-
-
-  //?   !initialize user model
-  
-  let user = new User({
-    email,
-    password,
-    name,
-  });
-
-  user = await user.save();
-  res.json(user);
 });
 
 // to make it public we use

@@ -1,18 +1,19 @@
 const mongoose = require("mongoose");
+
 const userSchema = mongoose.Schema({
   name: {
-    type: String,
     required: true,
+    type: String,
     trim: true,
   },
   email: {
-    type: String,
     required: true,
+    type: String,
     trim: true,
-
     validate: {
       validator: (value) => {
-        const re = /^w+ ([.-]?w+)*@w+ ([.-]?w+)* (.w {2,3})+$/;
+        const re =
+          /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
         return value.match(re);
       },
       message: "Please enter a valid email address",
@@ -23,17 +24,15 @@ const userSchema = mongoose.Schema({
     type: String,
   },
   address: {
-    default: "",
     type: String,
+    default: "",
   },
   type: {
-    default: "user",
     type: String,
+    default: "user",
   },
+  
 });
 
-// to create a model\
-
 const User = mongoose.model("User", userSchema);
-
 module.exports = User;
