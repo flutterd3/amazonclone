@@ -1,4 +1,6 @@
 //  it is creted in order to seperate ui part with business Logics(),
+import 'dart:convert';
+
 import 'package:amazonclone/constants/errorhandling.dart';
 import 'package:amazonclone/constants/utils.dart';
 import 'package:flutter/cupertino.dart';
@@ -43,6 +45,32 @@ class AuthService {
           showSnackBar(context, "Account Created Login with same Credentials");
         },
       );
+    } catch (e) {
+      showSnackBar(context, e.toString());
+    }
+  }
+
+  void signInUser({
+    required BuildContext context,
+    required String email,
+    required String password,
+  }) async {
+    try {
+      User user = User(
+          id: '',
+          name: '',
+          email: email,
+          password: password,
+          address: '',
+          type: '',
+          token: '');
+      http.Response res = await http.post(Uri.parse('$uri/api/signin'),
+          body: user.toJson(),
+          headers: <String, String>{
+            'Content-type': 'application/json; charset=UTF-8',
+          });
+
+      httpErrorHandle(response: res, context: context, onSucess: () {});
     } catch (e) {
       showSnackBar(context, e.toString());
     }
