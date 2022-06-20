@@ -8,7 +8,8 @@ import 'package:amazonclone/models/user.dart';
 import '../../../constants/global_variables.dart';
 
 class AuthService {
-  // signup the user
+  
+  //!  signup the user
 
   void signUpUser({
     required BuildContext context,
