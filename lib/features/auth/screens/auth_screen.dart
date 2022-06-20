@@ -1,3 +1,4 @@
+import 'package:amazonclone/features/auth/services/auth_service.dart';
 import 'package:flutter/material.dart';
 
 import '../../../common/widgets/custom_button.dart';
@@ -23,11 +24,12 @@ class _AuthScreenState extends State<AuthScreen> {
 
   final _signUpFormKey = GlobalKey<FormState>();
   final _signInFormKey = GlobalKey<FormState>();
-//   // final AuthService authService = AuthService();
+  // final AuthService authService = AuthService();
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
+  
 
 //   @override
 // after using controller dispose it
@@ -168,7 +170,7 @@ class _AuthScreenState extends State<AuthScreen> {
                           hintText: 'Email',
                         ),
                         const SizedBox(height: 10),
-                        CustomTextField(   
+                        CustomTextField(
                           controller: _passwordController,
                           hintText: 'Password',
                         ),
