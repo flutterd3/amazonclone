@@ -8,7 +8,6 @@ import 'package:amazonclone/models/user.dart';
 import '../../../constants/global_variables.dart';
 
 class AuthService {
-  
   //!  signup the user
 
   void signUpUser({
@@ -28,7 +27,7 @@ class AuthService {
           token: '');
 
       http.Response res = await http.post(
-        Uri.parse("$uri/api.signup"),
+        Uri.parse("$uri/api/signup"),
         body: user.toJson(),
         headers: <String, String>{
           'Content-type': 'application/json; charset=UTF-8',

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:amazonclone/constants/utils.dart';
+// http allows us to make an api request to the server
 import 'package:http/http.dart' as http;
 import 'package:flutter/cupertino.dart';
 

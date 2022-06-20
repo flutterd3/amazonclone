@@ -24,12 +24,11 @@ class _AuthScreenState extends State<AuthScreen> {
 
   final _signUpFormKey = GlobalKey<FormState>();
   final _signInFormKey = GlobalKey<FormState>();
-  // final AuthService authService = AuthService();
+  final AuthService authService = AuthService();
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
-  
 
 //   @override
 // after using controller dispose it
@@ -41,14 +40,14 @@ class _AuthScreenState extends State<AuthScreen> {
     _nameController.dispose();
   }
 
-  // void signUpUser() {
-  //   authService.signUpUser(
-  //     context: context,
-  //     email: _emailController.text,
-  //     password: _passwordController.text,
-  //     name: _nameController.text,
-  //   );
-  // }
+  void signUpUser() {
+    authService.signUpUser(
+      context: context,
+      email: _emailController.text,
+      password: _passwordController.text,
+      name: _nameController.text,
+    );
+  }
 
   // void signInUser() {
   //   authService.signInUser(
@@ -125,9 +124,9 @@ class _AuthScreenState extends State<AuthScreen> {
                         CustomButton(
                           text: 'Sign Up',
                           onTap: () {
-                            // if (_signUpFormKey.currentState!.validate()) {
-                            //   signUpUser();
-                            // }
+                            if (_signUpFormKey.currentState!.validate()) {
+                              signUpUser();
+                            }
                           },
                         )
                       ],
