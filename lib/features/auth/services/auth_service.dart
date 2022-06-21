@@ -5,9 +5,12 @@ import 'dart:convert';
 
 import 'package:amazonclone/constants/errorhandling.dart';
 import 'package:amazonclone/constants/utils.dart';
+import 'package:amazonclone/features/auth/home/homescreen.dart';
+import 'package:amazonclone/providers/user_provider.dart';
 import 'package:flutter/cupertino.dart';
 import "package:http/http.dart" as http;
 import 'package:amazonclone/models/user.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../constants/global_variables.dart';
@@ -81,10 +84,22 @@ class AuthService {
           response: res,
           context: context,
           onSucess: () async {
-            // 
+            // SetStrings implemeted
+
+            //! Shared Preferences geting instances
             SharedPreferences prefs = await SharedPreferences.getInstance();
-            await prefs.setString('x-auth-token', jsonDecode(res.body)['token']);
-            
+
+            //!Provider i.e userProvider
+            // Settings User
+            Provider.of<UserProvider>(context, listen: false).setUser(res.body);
+            await prefs.setString(
+                'x-auth-token', jsonDecode(res.body)['token']);
+
+            Navigator.pushNamedAndRemoveUntil(
+              context,
+              HomeScreen.routeName,
+              (route) => false,
+            );
           });
     } catch (e) {
       showSnackBar(context, e.toString());
