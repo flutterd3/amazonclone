@@ -56,19 +56,25 @@ class AuthService {
     required String password,
   }) async {
     try {
-      User user = User(
-          id: '',
-          name: '',
-          email: email,
-          password: password,
-          address: '',
-          type: '',
-          token: '');
+      // User user = User(
+      //     id: '',
+      //     name: '',
+      //     email: email,
+      //     password: password,
+      //     address: '',
+      //     type: '',
+      //     token: '');
       http.Response res = await http.post(Uri.parse('$uri/api/signin'),
-          body: user.toJson(),
+          // body: user.toJson(),
+          body: jsonEncode({
+            'email': email,
+            'password': password,
+          }),
           headers: <String, String>{
             'Content-type': 'application/json; charset=UTF-8',
           });
+
+      print(res.body);
 
       httpErrorHandle(response: res, context: context, onSucess: () {});
     } catch (e) {
