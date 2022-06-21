@@ -1,4 +1,6 @@
 //  it is creted in order to seperate ui part with business Logics(),
+// ignore_for_file: unused_local_variable
+
 import 'dart:convert';
 
 import 'package:amazonclone/constants/errorhandling.dart';
@@ -6,6 +8,7 @@ import 'package:amazonclone/constants/utils.dart';
 import 'package:flutter/cupertino.dart';
 import "package:http/http.dart" as http;
 import 'package:amazonclone/models/user.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../constants/global_variables.dart';
 
@@ -74,9 +77,15 @@ class AuthService {
             'Content-type': 'application/json; charset=UTF-8',
           });
 
-      print(res.body);
-
-      httpErrorHandle(response: res, context: context, onSucess: () {});
+      httpErrorHandle(
+          response: res,
+          context: context,
+          onSucess: () async {
+            // 
+            SharedPreferences prefs = await SharedPreferences.getInstance();
+            await prefs.setString('x-auth-token', jsonDecode(res.body)['token']);
+            
+          });
     } catch (e) {
       showSnackBar(context, e.toString());
     }
