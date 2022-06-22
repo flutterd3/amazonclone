@@ -1,3 +1,4 @@
+import 'package:amazonclone/features/auth/services/auth_service.dart';
 import 'package:amazonclone/providers/user_provider.dart';
 import 'package:amazonclone/routeR.dart';
 import 'package:flutter/cupertino.dart';
@@ -23,6 +24,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  final AuthService authService=AuthService();
+  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

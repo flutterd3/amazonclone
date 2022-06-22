@@ -53,5 +53,27 @@ authRouter.post("/api/signin", async (req, res) => {
   }
 });
 
+authRouter.post("/tokenIsValid", async (req, res) => {
+  try {
+    const token = req.headers("x-auth-token");
+    if (!token) return res.json(false);
+    const isVarify = jwt.verify(token, "passwordKey");
+    if (!isVarify) res.json(false);
+    const user = await User.findById(isVarify.id);
+    if (!user) {
+      return res.json(false);
+    }
+    res.json(true);
+  } catch (error) {}
+});
+
+// !api to get user data after all verification completed
+
+// middleware
+authRouter.get("/", auth, async (req, res) => {
+  const user = await User.findById(req.user);
+  res.json({ ...user._doc, token: req.token });
+});
+
 // to make it public we use
 module.exports = authRouter;
