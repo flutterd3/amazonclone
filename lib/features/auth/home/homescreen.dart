@@ -16,6 +16,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    // it is the getter we previously created
     final user = Provider.of<UserProvider>(context).user;
     return Scaffold(
       body: Center(

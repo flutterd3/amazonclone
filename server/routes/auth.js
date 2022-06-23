@@ -3,6 +3,7 @@ const authRouter = express.Router();
 const User = require("../models/user");
 var bcrypt = require("bcryptjs");
 var jwt = require("jsonwebtoken");
+const auth = require("../middlewares/auth");
 
 //
 
@@ -53,6 +54,7 @@ authRouter.post("/api/signin", async (req, res) => {
   }
 });
 
+// ?
 authRouter.post("/tokenIsValid", async (req, res) => {
   try {
     const token = req.headers("x-auth-token");
@@ -69,10 +71,12 @@ authRouter.post("/tokenIsValid", async (req, res) => {
 
 // !api to get user data after all verification completed
 
+// ?U are authorized so you can request this api
+
 // middleware
 authRouter.get("/", auth, async (req, res) => {
   const user = await User.findById(req.user);
-  res.json({ ...user._doc, token: req.token });
+  res.json({ ...user._doc, token: token });
 });
 
 // to make it public we use

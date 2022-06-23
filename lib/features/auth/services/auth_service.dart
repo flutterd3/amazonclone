@@ -1,5 +1,5 @@
 //  it is creted in order to seperate ui part with business Logics(),
-// ignore_for_file: unused_local_variable
+// ignore_for_file: unused_local_variable, use_build_context_synchronously, duplicate_ignore
 
 import 'dart:convert';
 
@@ -95,6 +95,7 @@ class AuthService {
             await prefs.setString(
                 'x-auth-token', jsonDecode(res.body)['token']);
 
+            // ignore: use_build_context_synchronously
             Navigator.pushNamedAndRemoveUntil(
               context,
               HomeScreen.routeName,
@@ -108,7 +109,9 @@ class AuthService {
 
 // ! Get user data
 
-  void getUserData(BuildContext context) async {
+  void getUserData(
+    BuildContext context,
+  ) async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String? token = prefs.getString('x-auth-token');
@@ -126,16 +129,22 @@ class AuthService {
       );
 
       var response = jsonDecode(tokenRes.body);
-      // TokenIsValid is supplying us booleans value so we check
 
-      if (response==true) {
-        // Get user data
+      if (response == true) {
+        // api created to get user data
+        http.Response userRes = await http.get(
+          Uri.parse('$uri/'),
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+            'x-auth-token': token
+          },
+        );
 
-        
-
-      
+        var userProvider = Provider.of<UserProvider>(context, listen: false);
+        userProvider.setUser(userRes.body);
       }
-
-    } catch (e) {}
+    } catch (e) {
+      showSnackBar(context, e.toString());
+    }
   }
 }
